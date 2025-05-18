@@ -28,22 +28,19 @@ jobs:
           mv apache-jmeter-5.6.3 jmeter
           echo "$GITHUB_WORKSPACE/jmeter/bin" >> $GITHUB_PATH
 
-      - name: List files in tests folder (debug)
-        run: ls -l tests
-
       - name: Run JMeter tests
         run: |
-          mkdir -p results
-          jmeter -n -t "tests/POST-Cadastrado.jmx" -l results/result.jtl -e -o results/report
+          mkdir -p result report
+          jmeter -n -t "POST-Cadastrado.jmx" -l result/result.jtl -e -o report
 
       - name: Upload result logs
         uses: actions/upload-artifact@v4
         with:
           name: jmeter-results
-          path: results
+          path: result
 
       - name: Archive HTML report
         uses: actions/upload-artifact@v4
         with:
           name: jmeter-html-report
-          path: results/report
+          path: report
