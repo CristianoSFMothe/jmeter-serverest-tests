@@ -1,7 +1,7 @@
 name: Run JMeter Load Tests
 
 on:
-  workflow_dispatch: # Permite execução manual via interface do GitHub
+  workflow_dispatch: 
   push:
     branches: [main]
   pull_request:
@@ -31,7 +31,7 @@ jobs:
       - name: Run JMeter tests
         run: |
           mkdir -p results
-          jmeter -n -t tests/teste-serverest.jmx -l results/result.jtl -e -o results/report
+           jmeter -n -t "tests/POST - Cadastrado.jmx" -l results/result.jtl -e -o results/report
 
       - name: Upload result logs
         uses: actions/upload-artifact@v4
