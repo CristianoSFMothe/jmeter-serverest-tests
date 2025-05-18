@@ -1,4 +1,4 @@
-name: Run JMeter Load Tests and Deploy Report
+name: Run JMeter Load Tests and Deploy Report to Main
 
 on:
   workflow_dispatch:
@@ -34,17 +34,13 @@ jobs:
           jmeter -n -t POST-cadastrado_usuario.jmx -l result/result.jtl -e -o docs
           touch docs/.nojekyll
 
-      - name: Upload result logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: jmeter-results
-          path: result
-
-      - name: Deploy JMeter report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: gh-pages
-          user_name: CristianoSFMothe
-          user_email: CristianoSFMothe@users.noreply.github.com
+      - name: Commit and push report to main branch
+        run: |
+          git config user.name "CristianoSFMothe"
+          git config user.email "CristianoSFMothe@users.noreply.github.com"
+          git add docs .nojekyll
+          git commit -m "chore: update JMeter report"
+          git push origin main
+        env:
+          # Usar token com permissão para push no main (por padrão GITHUB_TOKEN permite)
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
