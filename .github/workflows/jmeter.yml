@@ -1,4 +1,4 @@
-name: Run JMeter Load Tests
+name: Run JMeter Load Tests and Deploy Report
 
 on:
   workflow_dispatch:
@@ -28,10 +28,11 @@ jobs:
           mv apache-jmeter-5.6.3 jmeter
           echo "$GITHUB_WORKSPACE/jmeter/bin" >> $GITHUB_PATH
 
-      - name: Run JMeter tests
+      - name: Run JMeter tests and generate report
         run: |
           mkdir -p result docs
           jmeter -n -t POST-cadastrado_usuario.jmx -l result/result.jtl -e -o docs
+          touch docs/.nojekyll
 
       - name: Upload result logs
         uses: actions/upload-artifact@v4
@@ -39,8 +40,11 @@ jobs:
           name: jmeter-results
           path: result
 
-      - name: Archive HTML report
-        uses: actions/upload-artifact@v4
+      - name: Deploy JMeter report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: jmeter-html-report
-          path: docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
+          user_name: CristianoSFMothe
+          user_email: CristianoSFMothe@users.noreply.github.com
