@@ -1,0 +1,6 @@
+*.log
+*.bak
+*.jtl
+*.tmp
+.idea/
+.vscode/" > .gitignore
