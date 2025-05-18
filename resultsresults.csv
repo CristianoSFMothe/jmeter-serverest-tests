@@ -1,0 +1,16 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1747539609448,30710,Fluxo - GET > POST > GET(id) > PUT(id) > GET(id) > DELETE(id),200,,Usuários 1-1,,true,,711,155,5,5,null,0,0,0
+1747539629506,10653, GET > https://serverest.dev/usuarios,200,OK,Usuários 1-1,text,true,,711,155,5,5,https://serverest.dev/usuarios,10646,0,546
+1747539609448,10653,GET returnar todos usuários,200,"Number of samples in transaction : 1, number of failing samples : 0",Usuários 1-1,,true,,711,155,5,5,null,10646,20059,546
+1747539615448,24921,Fluxo - GET > POST > GET(id) > PUT(id) > GET(id) > DELETE(id),200,,Usuários 1-4,,true,,707,155,4,4,null,0,0,0
+1747539635453,4915, GET > https://serverest.dev/usuarios,200,OK,Usuários 1-4,text,true,,707,155,4,4,https://serverest.dev/usuarios,4914,0,145
+1747539615448,4915,GET returnar todos usuários,200,"Number of samples in transaction : 1, number of failing samples : 0",Usuários 1-4,,true,,707,155,4,4,null,4914,20006,145
+1747539611439,28929,Fluxo - GET > POST > GET(id) > PUT(id) > GET(id) > DELETE(id),200,,Usuários 1-2,,true,,707,155,4,4,null,0,0,0
+1747539631455,8914, GET > https://serverest.dev/usuarios,200,OK,Usuários 1-2,text,true,,707,155,4,4,https://serverest.dev/usuarios,8914,0,149
+1747539611439,8914,GET returnar todos usuários,200,"Number of samples in transaction : 1, number of failing samples : 0",Usuários 1-2,,true,,707,155,4,4,null,8914,20016,149
+1747539617439,22941,Fluxo - GET > POST > GET(id) > PUT(id) > GET(id) > DELETE(id),200,,Usuários 1-5,,true,,707,155,2,2,null,0,0,0
+1747539637440,2939, GET > https://serverest.dev/usuarios,200,OK,Usuários 1-5,text,true,,707,155,2,2,https://serverest.dev/usuarios,2939,0,141
+1747539617439,2939,GET returnar todos usuários,200,"Number of samples in transaction : 1, number of failing samples : 0",Usuários 1-5,,true,,707,155,2,2,null,2939,20003,141
+1747539613440,27492,Fluxo - GET > POST > GET(id) > PUT(id) > GET(id) > DELETE(id),200,,Usuários 1-3,,true,,707,155,1,1,null,0,0,0
+1747539633443,7490, GET > https://serverest.dev/usuarios,200,OK,Usuários 1-3,text,true,,707,155,1,1,https://serverest.dev/usuarios,7490,0,151
+1747539613440,7490,GET returnar todos usuários,200,"Number of samples in transaction : 1, number of failing samples : 0",Usuários 1-3,,true,,707,155,1,1,null,7490,20004,151
