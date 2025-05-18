@@ -1,0 +1,46 @@
+name: Run JMeter Load Tests
+
+on:
+  workflow_dispatch: # Permite execução manual via interface do GitHub
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  jmeter-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: "11"
+          distribution: "adopt"
+
+      - name: Install JMeter
+        run: |
+          curl -L https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz -o jmeter.tgz
+          tar -xzf jmeter.tgz
+          mv apache-jmeter-5.6.3 jmeter
+          echo "$GITHUB_WORKSPACE/jmeter/bin" >> $GITHUB_PATH
+
+      - name: Run JMeter tests
+        run: |
+          mkdir -p results
+          jmeter -n -t tests/teste-serverest.jmx -l results/result.jtl -e -o results/report
+
+      - name: Upload result logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-results
+          path: results
+
+      - name: Archive HTML report
+        uses: actions/upload-artifact@v3
+        with:
+          name: jmeter-html-report
+          path: results/report
