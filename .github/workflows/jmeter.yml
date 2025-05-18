@@ -1,7 +1,7 @@
 name: Run JMeter Load Tests
 
 on:
-  workflow_dispatch: # Permite execução manual via interface do GitHub
+  workflow_dispatch: 
   push:
     branches: [main]
   pull_request:
@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: "11"
           distribution: "adopt"
@@ -31,16 +31,16 @@ jobs:
       - name: Run JMeter tests
         run: |
           mkdir -p results
-          jmeter -n -t tests/teste-serverest.jmx -l results/result.jtl -e -o results/report
+           jmeter -n -t "tests/POST - Cadastrado.jmx" -l results/result.jtl -e -o results/report
 
       - name: Upload result logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jmeter-results
           path: results
 
       - name: Archive HTML report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: jmeter-html-report
           path: results/report
